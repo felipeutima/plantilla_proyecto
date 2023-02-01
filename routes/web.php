@@ -17,8 +17,6 @@
 Route::group(array('domain' => '127.0.0.1'), function () {
 
     Route::get('/', 'ControladorWebHome@index');
- 
-
     Route::get('/admin', 'ControladorHome@index');
     Route::post('/admin/patente/nuevo', 'ControladorPatente@guardar');
 
@@ -96,3 +94,35 @@ Route::get('/admin/patente/cargarGrilla', 'ControladorPatente@cargarGrilla')->na
 Route::get('/admin/patente/eliminar', 'ControladorPatente@eliminar');
 Route::get('/admin/patente/nuevo/{id}', 'ControladorPatente@editar');
 Route::post('/admin/patente/nuevo/{id}', 'ControladorPatente@guardar');
+
+/* --------------------------------------------- */
+/* CONTROLADOR CLIENTES                         */
+/* --------------------------------------------- */
+Route::get('/admin/cliente/nuevo', 'ControladorCliente@nuevo');
+Route::get('/admin/clientes', 'ControladorCliente@index');
+
+
+/* --------------------------------------------- */
+/* CONTROLADOR PRODUCTOS                     */
+/* --------------------------------------------- */
+
+Route::get('/admin/producto/nuevo', 'ControladorProducto@nuevo');
+Route::get('/admin/productos', 'ControladorProducto@index');
+
+/* --------------------------------------------- */
+/* CONTROLADOR PEDIDOS                    */
+/* --------------------------------------------- */
+/*Route::get('/admin/pedidos/nuevo', 'ControladorProducto@nuevo'); */
+Route::get('/admin/pedido/nuevo', 'ControladorPedidos@nuevo');
+Route::get('/admin/pedidos', 'ControladorPedidos@index');
+
+/* --------------------------------------------- */
+/* CONTROLADOR POSTULACION                */
+/* --------------------------------------------- */
+Route::get('/admin/postulacion/nuevo', 'ControladorPostulacion@nuevo');
+Route::get('/admin/postulaciones', 'ControladorPostulacion@index');
+/* --------------------------------------------- */
+/* CONTROLADOR SUCURSAL               */
+/* --------------------------------------------- */
+Route::get('/admin/sucursal/nuevo', 'ControladorSucursal@nuevo');
+Route::get('/admin/sucursales', 'ControladorSucursal@index');
