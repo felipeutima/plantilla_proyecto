@@ -2,18 +2,18 @@
 @section("titulo",$titulo)
 @section('scripts')
 <script>
-    globalId = '<?php echo isset($cliente->idcliente) && $cliente->idcliente > 0 ? $cliente->idcliente : 0; ?>';
-    <?php $globalId = isset($cliente->idcliente) ? $cliente->idcliente : "0";?>
+    globalId = '<?php echo isset($categoria->idcategoria) && $categoria->idcategoria > 0 ? $categoria->idcategoria : 0; ?>';
+    <?php $globalId = isset($categoria->idcategoria) ? $categoria->idcategoria : "0";?>
 </script>
 @endsection
 @section('breadcrumb')
 <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/admin/home">Inicio</a></li>
-    <li class="breadcrumb-item"><a href="/admin/clientes">Clientes</a></li>
+    <li class="breadcrumb-item"><a href="/admin/categorias">categorias</a></li>
     <li class="breadcrumb-item active">Nuevo</li>
 </ol>
 <ol class="toolbar">
-    <li class="btn-item"><a title="Nuevo" href="/admin/cliente/nuevo" class="fa fa-plus-circle" aria-hidden="true"><span>Nuevo</span></a></li>
+    <li class="btn-item"><a title="Nuevo" href="/admin/categoria/nuevo" class="fa fa-plus-circle" aria-hidden="true"><span>Nuevo</span></a></li>
     <li class="btn-item"><a title="Guardar" href="#" class="fa fa-floppy-o" aria-hidden="true" onclick="javascript: $('#modalGuardar').modal('toggle');"><span>Guardar</span></a>
     </li>
     @if($globalId > 0)
@@ -48,28 +48,9 @@ if (isset($msg)) {
                 <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                 <div class="form-group col-lg-6">
                     <label>Nombre: *</label>
-                    <input type="text" id="txtNombre" name="txtNombre" class="form-control" value="{{ $cliente->nombre}}" required>
+                    <input type="text" id="txtNombre" name="txtNombre" class="form-control"  value="{{$categoria->nombre}}" required>
                 </div>
-                <div class="form-group col-lg-6">
-                    <label>Apellido: *</label>
-                    <input type="text" id="txtApellido" name="txtApellido" class="form-control" value="{{ $cliente->apellido }}"required>
-                </div>
-                <div class="form-group col-lg-6">
-                    <label>Correo: *</label>
-                    <input type="email" id="txtCorreo" name="txtCorreo" class="form-control" value="{{ $cliente->correo}}" required>
-                </div>
-                <div class="form-group col-lg-6">
-                    <label>dni: *</label>
-                    <input type="text" id="txtDni" name="txtDni" class="form-control" value="{{ $cliente-> dni }}" required>
-                </div>
-                <div class="form-group col-lg-6">
-                    <label>Celular: *</label>
-                    <input type="text" id="txtCelular" name="txtCelular" class="form-control" value="{{ $cliente->celular}}" required>
-                </div>
-                <div class="form-group col-lg-6">
-                    <label>Clave: *</label>
-                    <input type="password" id="txtClave" name="txtClave" class="form-control"  value="{{ $cliente->clave }}"required>
-                </div>
+  
             </div>	
         </form>
 </div>
@@ -108,7 +89,7 @@ if (isset($msg)) {
     function eliminar() {
         $.ajax({
             type: "GET",
-            url: "{{ asset('admin/cliente/eliminar')}}",
+            url: "{{ asset('admin/categoria/eliminar') }}",
             data: { id:globalId },
             async: true,
             dataType: "json",
@@ -120,7 +101,6 @@ if (isset($msg)) {
                     $('#mdlEliminar').modal('toggle');
                 } else {
                     msgShow(data.mensaje, "danger");
-                    $('#mdlEliminar').modal('toggle');
                 }
             }
         });

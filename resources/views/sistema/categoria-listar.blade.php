@@ -1,6 +1,6 @@
 @extends('plantilla')
 
-@section('titulo', "Listado de Pedidos")
+@section('titulo', "Listado de Categorias")
  <!-- Script para crear grillas paginadas -->
 @section('scripts')
 <link href="{{ asset('css/datatables.min.css') }}" rel="stylesheet">
@@ -12,7 +12,7 @@
     <li class="breadcrumb-item active">Men&uacute;</a></li>
 </ol>
 <ol class="toolbar">
-    <li class="btn-item"><a title="Nuevo" href="/admin/pedido/nuevo" class="fa fa-plus-circle" aria-hidden="true"><span>Nuevo</span></a></li>
+    <li class="btn-item"><a title="Nuevo" href="/admin/categoria/nuevo" class="fa fa-plus-circle" aria-hidden="true"><span>Nuevo</span></a></li>
     <li class="btn-item"><a title="Recargar" href="#" class="fa fa-refresh" aria-hidden="true" onclick='window.location.replace("/admin/sistema/menu");'><span>Recargar</span></a></li>
 </ol>
 @endsection
@@ -27,12 +27,8 @@ if (isset($msg)) {
     <thead>
         <tr>
             <th></th>
-            <th>Fecha</th>
-            <th>Descripcion</th>
-            <th>Total</th>
-            <th>Sucursal</th>
-            <th>Cliente</th>
-            <th>Estado</th>
+            <th>Nombre</th>
+
         </tr>
     </thead>
 </table> 
@@ -45,7 +41,7 @@ if (isset($msg)) {
 	    "bSearchable": true,
         "pageLength": 25,
         "order": [[ 0, "asc" ]],
-	    "ajax": "{{ route('pedido.cargarGrilla') }}"
+	    "ajax": "{{ route('categorias.cargarGrilla') }}"
 	});
 </script>
 @endsection

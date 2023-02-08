@@ -21,6 +21,7 @@ class Sucursal extends Model
     public function cargarDesdeRequest($request) {
         $this->idsucursal = $request->input('id') != "0" ? $request->input('id') : $this->idmenu;
         $this->nombre = $request->input('txtNombre');
+        $this->linkmap = $request->input('txtMap');
     }
 
     public function obtenerTodos()
@@ -38,13 +39,15 @@ class Sucursal extends Model
     {
         $sql = "SELECT
                 idsucursal,
-                nombre
+                nombre,
+                linkmap
                 FROM sucursales WHERE idsucursal= $idsucursal";
         $lstRetorno = DB::select($sql);
 
         if (count($lstRetorno) > 0) {
             $this->idsucursal = $lstRetorno[0]->idsucursal;
             $this->nombre = $lstRetorno[0]->nombre;
+            $this->linkmap = $lstRetorno[0]->linkmap;
             return $this;
         }
         return null;
@@ -52,11 +55,15 @@ class Sucursal extends Model
 
     public function guardar() { //es el actualizar
         $sql = "UPDATE sucursales SET
-            nombre=?
+            nombre=?,
+            linkmap=?
             WHERE idsucursal=?";
         $affected = DB::update($sql, [
-            $this->idsucursal,
-            $this->nombre
+      
+            $this->nombre,
+            $this->linkMap,
+            $this->idsucursal
+
         ]);
     }
 
@@ -70,12 +77,42 @@ class Sucursal extends Model
     public function insertar()
     {
         $sql = "INSERT INTO sucursales (
-                nombre
-            ) VALUES (?);";
+                nombre,
+                linkmap
+            ) VALUES (?, ?);";
         $result = DB::insert($sql, [
-            $this->nombre
+            $this->nombre,
+            $this->linkmap,
         ]);
         return $this->idsucursal = DB::getPdo()->lastInsertId();
     }
+
+    public function obtenerFiltrado()
+    {
+        $request = $_REQUEST;
+        $columns = array(
+            0 => 'A.nombre',
+            1 => 'A.linkmap'
+        );
+        $sql = "SELECT DISTINCT
+                A.idsucursal,
+                A.nombre,
+                A.linkmap
+                
+                FROM sucursales A
+                WHERE 1=1
+                ";
+
+        //Realiza el filtrado
+        if (!empty($request['search']['value'])) {
+            $sql .= " AND ( A.nombre LIKE '%" . $request['search']['value'] . "%' ";
+            $sql .= " OR A.linkmap LIKE '%" . $request['search']['value'] . "%' )";
+        }
+        $sql .= " ORDER BY " . $columns[$request['order'][0]['column']] . "   " . $request['order'][0]['dir'];
+
+        $lstRetorno = DB::select($sql);
+        return $lstRetorno;
+    }
+
 
 }
