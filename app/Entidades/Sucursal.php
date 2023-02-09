@@ -28,7 +28,9 @@ class Sucursal extends Model
     {
         $sql = "SELECT
                   idsucursal,
-                  nombre
+                  nombre,
+                  telefono,
+                  linkmap
                 FROM sucursales ORDER BY nombre";
         $lstRetorno = DB::select($sql); //devuelve el array
         return $lstRetorno; //retorno el array

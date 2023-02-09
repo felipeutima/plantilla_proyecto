@@ -149,7 +149,18 @@ class ControladorProducto extends Controller
         
             $entidad = new Producto();
             $entidad->idproducto = $id;
+
+            //unlink de imagen 
+            $productAnt = new Producto();
+            $productAnt->obtenerPorId($id);
+
+            @unlink(env('APP_PATH') . "/public/files/$productAnt->imagen");
+
+            //elimina el objeto
             $entidad->eliminar();
+
+
+
             $aResultado["err"] = EXIT_SUCCESS; //eliminado correctamente 
             $aResultado["mensaje"] = "Eliminado correctamente ";
 
