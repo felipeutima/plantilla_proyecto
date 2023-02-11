@@ -22,7 +22,7 @@ class ControladorPostulacion extends Controller{//para identificar como controla
       
             $entidad=new Postulacion();
             $aPostulaciones=$entidad->obtenerFiltrado();
-       
+
       
             $data=array();
             $cont=0;
@@ -39,7 +39,7 @@ class ControladorPostulacion extends Controller{//para identificar como controla
                 $row[]=$aPostulaciones[$i] ->apellido;
                 $row[]=$aPostulaciones[$i] ->celular;
                 $row[]=$aPostulaciones[$i] ->correo;
-                $row[]=$aPostulaciones[$i] ->curriculo;
+                $row[]='<a href="/files/'.$aPostulaciones[$i] ->curriculo.'" target="_blank">Ver Curriculo</a>';
                 $cont++;
                 $data[]=$row; 
       
@@ -61,6 +61,13 @@ class ControladorPostulacion extends Controller{//para identificar como controla
                     $titulo = "Modificar Postulacion";
                     $entidad = new Postulacion();
                     $entidad->cargarDesdeRequest($request);
+
+                    if ($_FILES['archivo']["error"] === UPLOAD_ERR_OK) { //Se adjunta imagen
+                        $extension = pathinfo($_FILES['archivo']["name"], PATHINFO_EXTENSION);
+                        $nombreArchivo = date("Ymdhmsi") . ".$extension";
+                        $archivo = $_FILES["archivo"]["tmp_name"];
+                  }
+             
                
   
                     //validaciones del formulario
@@ -69,10 +76,26 @@ class ControladorPostulacion extends Controller{//para identificar como controla
                           $msg["MSG"] = "Inserte todos los datos obligatorios";
                     } else {
                           if ($_POST["id"] > 0) {
+                              $postulacionAnt = new Postulacion();
+                              $postulacionAnt->obtenerPorId($entidad->idproducto);
+                              if ($_FILES["archivo"]["error"] === UPLOAD_ERR_OK) {
+                                    //Eliminar imagen anterior
+                                    @unlink(env('APP_PATH') . "/public/files/$postulacionAnt->curriculo");
+                                    move_uploaded_file($archivo, env('APP_PATH') .  "/public/files/$nombreArchivo");
+                                    $entidad->curriculo =$nombreArchivo;
+                              } else {
+                                    $entidad->curriculo = $postulacionAnt->imagen;
+                              }
+
                                 $entidad->guardar(); //actualizar
                                 $msg["ESTADO"] = MSG_SUCCESS;
                                 $msg["MSG"] = OKINSERT;
                           } else {
+                              if ($_FILES["archivo"]["error"] === UPLOAD_ERR_OK) {
+                                    move_uploaded_file($archivo, env('APP_PATH') .  "/public/files/$nombreArchivo");
+                                    $entidad->curriculo = $nombreArchivo;
+                                    //guardaelarchivo
+                              }
                                 $entidad->insertar();
                                 $msg["ESTADO"] = MSG_SUCCESS;
                                 $msg["MSG"] = OKINSERT;
@@ -110,6 +133,13 @@ class ControladorPostulacion extends Controller{//para identificar como controla
           
               $entidad = new Postulacion();
               $entidad->idpostulacion = $id;
+
+                 //unlink de archivo
+            $postulacionAnt = new Postulacion();
+            $postulacionAnt->obtenerPorId($id);
+
+            @unlink(env('APP_PATH') . "/public/files/$postulacionAnt->imagen");
+
               $entidad->eliminar();
               $aResultado["err"] = EXIT_SUCCESS; //eliminado correctamente 
               $aResultado["mensaje"] = "Eliminado correctamente ";

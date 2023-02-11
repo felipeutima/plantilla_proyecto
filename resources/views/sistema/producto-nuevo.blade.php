@@ -64,6 +64,10 @@ if (isset($msg)) {
                 <small class="d-block">Archivos admitidos: .jpg, .jpeg, .png</small>
             </div>
             <div class="form-group col-lg-6">
+                <label>Descripción: </label>
+                <input type="text" name="txtDescripcion" id="txtDescripcion" class="form-control">
+            </div>
+            <div class="form-group col-lg-6">
                 <label>Categoria: *</label>
                 <select name="lstCategoria" id="lstCategoria" class="form-control">
                     <option value="" selected disabled>Seleccionar</option>

@@ -24,7 +24,7 @@ class Postulacion extends Model
         $this->apellido = $request->input('txtApellido');
         $this->correo = $request->input('txtCorreo') ;
         $this->celular = $request->input('txtCelular') ;
-        $this->curriculo = $request->input('txtCurriculo');
+        $this->curriculo ='';
 
     }
 

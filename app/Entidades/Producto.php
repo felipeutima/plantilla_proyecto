@@ -11,7 +11,7 @@ class Producto extends Model
     public $timestamps = false; //indica si toca poner fecha de insercion
 
     protected $fillable = [ //cuales son las columnas 
-        'idproducto', 'nombre', 'cantidad', 'precio', 'imagen', 'fk_idcategoria'
+        'idproducto', 'nombre', 'cantidad', 'precio', 'imagen', 'fk_idcategoria','descripcion'
     ];
 
     protected $hidden = [ //si hay columnas que deban ir ocultas
@@ -25,6 +25,7 @@ class Producto extends Model
         $this->precio = $request->input('txtPrecio') != "" ? $request->input('txtPrecio') : 0;
         $this->imagen ="";
         $this->fk_idcategoria = $request->input('lstCategoria');
+        $this->descripcion = $request->input('txtDescripcion');
     }
 
     public function obtenerTodos()
@@ -35,6 +36,7 @@ class Producto extends Model
                   cantidad,
                   precio,
                   imagen,
+                  descripcion,
                   fk_idcategoria
                 FROM productos ORDER BY nombre";
         $lstRetorno = DB::select($sql); //devuelve el array
@@ -72,6 +74,7 @@ class Producto extends Model
             cantidad=?,
             precio=?,
             imagen=?,
+            descripcion=?,
             fk_idcategoria=?
             WHERE idproducto=?";
         $affected = DB::update($sql, [
@@ -79,6 +82,7 @@ class Producto extends Model
             $this->cantidad,
             $this->precio,
             $this->imagen,
+            $this->descripcion,
             $this->fk_idcategoria,
             $this->idproducto
         ]);
@@ -98,13 +102,15 @@ class Producto extends Model
                 cantidad,
                 precio,
                 imagen,
+                descripcion,
                 fk_idcategoria
-            ) VALUES (?, ?, ?, ?, ?);";
+            ) VALUES (?, ?, ?, ?, ?,?);";
         $result = DB::insert($sql, [
             $this->nombre,
             $this->cantidad,
             $this->precio,
             $this->imagen,
+            $this->descripcion,
             $this->fk_idcategoria
         ]);
         return $this->idcliente = DB::getPdo()->lastInsertId();

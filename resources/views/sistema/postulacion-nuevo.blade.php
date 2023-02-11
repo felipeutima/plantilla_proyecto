@@ -1,4 +1,4 @@
-@extends("plantilla");
+@extends("plantilla")
 @section("titulo",$titulo)
 @section('scripts')
 <script>
@@ -42,7 +42,7 @@ if (isset($msg)) {
     echo '<script>msgShow("' . $msg["MSG"] . '", "' . $msg["ESTADO"] . '")</script>';
 }
 ?>
-        <form id="form1" method="POST">
+        <form id="form1" method="POST" enctype="multipart/form-data">
             <div class="row">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                 <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
@@ -64,7 +64,7 @@ if (isset($msg)) {
                 </div>
                 <div class="form-group col-lg-6">
                     <label>Curriculo: *</label>
-                    <input type="file" name="curriculo" id="curriculo" accept=".docx, .pdf, .txt">
+                    <input type="file" name="archivo" id="archivo" accept=".docx, .pdf, .txt">
                     <small class="d-block">Archivos admitidos: .docx, .pdf, .txt</small>
                 </div>
 

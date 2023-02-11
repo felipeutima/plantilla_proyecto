@@ -11,7 +11,7 @@ class Sucursal extends Model
     public $timestamps = false; //indica si toca poner fecha de insercion
 
     protected $fillable = [ //cuales son las columnas 
-        'idsucursal', 'nombre'
+        'idsucursal', 'nombre', 'linkmap'
     ];
 
     protected $hidden = [ //si hay columnas que deban ir ocultas
