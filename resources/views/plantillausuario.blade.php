@@ -43,15 +43,23 @@
 	                <li>
 	                    <a href="/contacto" >Contacto<span class="full-box" ></span></a>
 	                </li>
-	                <li>
+	        
+
+			    @if(Session::get("idcliente")>0)
+			    <li>
 	                    <a href="/mi-cuenta" >Mi Cuenta<span class="full-box" ></span></a>
 	                </li>
+			    <li>
+			    <a href="/cerrar-sesion"  style="height: 80%" class="bg-warning text-dark"><i></i> &nbsp; Cerrar sesion</a>
+	                </li>
+			    @else
 	                <li>
 			    <a href="/iniciar-sesion"  style="height: 80%" class="bg-warning text-dark"><i></i> &nbsp; Iniciar Sesion</a>
 	                </li>
 	                <li>
 			    <a href="/recuperar-clave"  style="height: 80%"><i class="fas fa-hamburger fa-fw"></i> &nbsp; Recuperar Clave</a>
 	                </li>
+			    @endif
 	            </ul>
 	        </nav>
 	        

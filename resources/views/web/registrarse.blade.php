@@ -3,7 +3,7 @@
 <div class="container border rounded  shadow my-3" style="width:50%">
       <h3 class="text-center font-weight-bold m-4">Registrate</h3>
       <form action="" method="POST" class="px-5 align-items-center  ">
-      <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
+            <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
 
             <!-- 2 column grid layout with text inputs for the first and last names -->
             <div class="row mb-4">
@@ -48,7 +48,7 @@
                   <input type="password" id="txtClave" name="txtClave" class="form-control" />
                   <label class="form-label" for="txtClave">Password</label>
             </div>
-            
+
             <div class=" row justify-content-center align-items-center ">
                   <!-- Submit button -->
                   <button type="submit" class="btn btn-primary mb-4" style="width:20%">Registrarse</button>

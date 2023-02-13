@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Entidades\Cliente;
 use App\Entidades\Sistema\Patente;
 use App\Entidades\Sistema\Usuario;
 
@@ -11,7 +12,9 @@ class ControladorWebMiCuenta extends Controller
 {
     public function index()
     {
-
-            return view("web.mi-cuenta");
+            $idcliente=Session::get("idcliente");
+            $cliente=new Cliente();
+            $cliente->obtenerPorId($idcliente);
+            return view("web.mi-cuenta", compact("idcliente", "cliente"));
     }
 }

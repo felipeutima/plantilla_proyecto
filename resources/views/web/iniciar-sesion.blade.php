@@ -12,20 +12,22 @@
 
                         <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-4 pt-4  justify-content-center">
 
-                              <form style="width: 23rem;">
+                              <form style="width: 23rem;" method="POST" action="">
+                              <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
+                                    {{$mensaje}}
 
                                     <div class="form-outline mb-4">
-                                          <input type="email" id="form2Example18" class="form-control form-control-lg" />
-                                          <label class="form-label" for="form2Example18">Email</label>
+                                          <input type="email" id="txtCorreo" name="txtCorreo" class="form-control form-control-lg" />
+                                          <label class="form-label" for="txtCorreo">Email</label>
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                          <input type="password" id="form2Example28" class="form-control form-control-lg" />
-                                          <label class="form-label" for="form2Example28">Contraseña</label>
+                                          <input type="password" id="txtClave" name="txtClave" class="form-control form-control-lg" />
+                                          <label class="form-label" for="txtClave">Contraseña</label>
                                     </div>
 
                                     <div class="pt-1 mb-4">
-                                          <button class="btn btn-info btn-lg btn-block" type="button">Entrar</button>
+                                          <button class="btn btn-info btn-lg btn-block" type="submit">Entrar</button>
                                     </div>
 
                                     <p class="small mb-5 pb-lg-2"><a class="text-muted" href="#!">Olvidaste tu contraseña?</a></p>

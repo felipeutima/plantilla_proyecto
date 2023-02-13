@@ -34,7 +34,7 @@
 	<div class="container container-web-page">
 	<h3 class="text-center text-uppercase poppins-regular font-weight-bold pb-3">Nuestras Sucursales</h3>
 		<div class="row justify-content-md-center text-center ">
-			<table class="table align-center justify-content-center">
+			<table class="table" style="width:60%">
 				<thead>
 					<tr class="align-middle" >
 						<th  class="font-weight-bold" scope="col">Sucursal</th>
@@ -49,7 +49,8 @@
 
 						<th class="font-weight-bold">{{$sucursal->nombre}}</th>
 						<td>{{$sucursal->telefono}}</td>
-						<td><a target="_blank" href="{{$sucursal->linkmap}}">{{$sucursal->linkmap}}</a></td>
+						<td><a target="_blank" href="{{$sucursal->linkmap}}"><i class="fa fa-location-arrow " aria-hidden="true"></i></a></td>
+						
 					</tr>
 
 					@endforeach
