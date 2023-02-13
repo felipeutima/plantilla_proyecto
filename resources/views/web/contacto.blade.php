@@ -9,9 +9,9 @@
 
       <hr>
 </div>
-<div class="container border shadow my-4" style="width:70%">
+<div class="container " style="width:70%">
       <h3 class="text-center text-uppercase poppins-regular font-weight-bold pt-4">CONTACTO</h3>
-      <form action="POST">
+      <form action="POST" class="form border shadow m-4 p-4">
             <div class="row">
 
                   <div class="mb-3 col-md-6">
