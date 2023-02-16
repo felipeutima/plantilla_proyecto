@@ -50,6 +50,23 @@ class Carrito extends Model
         return null;
     }
 
+
+    public function obtenerPorCliente($idcliente)
+    {
+        $sql = "SELECT
+                idcarrito,
+                fk_idcliente
+                FROM carritos WHERE fk_idcliente= $idcliente";
+        $lstRetorno = DB::select($sql);
+
+        if (count($lstRetorno) > 0) {
+            $this->idcarrito = $lstRetorno[0]->idcarrito;
+            $this->fk_idcliente = $lstRetorno[0]->fk_idcliente;
+            return $this;
+        }
+        return null;
+    }
+
     public function guardar() { //es el actualizar
         $sql = "UPDATE carritos SET
             fk_idcliente=?
@@ -65,6 +82,12 @@ class Carrito extends Model
         $sql = "DELETE FROM carritos WHERE
             idcarrito=?";
         $affected = DB::delete($sql, [$this->idcarrito]);
+    }
+    public function eliminarPorCliente($idCliente)
+    {
+        $sql = "DELETE FROM carritos WHERE
+            fk_idcliente=?";
+        $affected = DB::delete($sql, [$idCliente]);
     }
 
     public function insertar()

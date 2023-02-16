@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Entidades\CarritoProducto;
 use App\Entidades\Postulacion;
 use App\Entidades\Sistema\Patente;
 use App\Entidades\Sistema\Usuario;
@@ -14,7 +15,14 @@ class ControladorWebNosotros extends Controller
 {
       public function index()
       {
-            return view("web.nosotros");
+
+            $idcliente =Session::get("idcliente");
+            $cantidad_carrito="";
+            if($idcliente){
+                $carritoProducto= new CarritoProducto();
+                $cantidad_carrito=$carritoProducto->obtenerCantidadPorCliente($idcliente);
+            }
+            return view("web.nosotros", compact("cantidad_carrito"));
       }
 
       public function guardar(Request $request)

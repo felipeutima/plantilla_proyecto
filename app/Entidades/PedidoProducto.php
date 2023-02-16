@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class PedidoProducto extends Model
 {
     protected $table = 'pedidos_productos';
-    public $timestamps = false; //indica si toca poner preciounitaio de insercion
+    public $timestamps = false; //indica si toca poner preciounitario de insercion
 
     protected $fillable = [ //cuales son las columnas 
-        'idpedidoproductos', 'preciounitaio', 'cantidad', 'total', 'fk_idproducto', 'fk_idpedido'
+        'idpedidoproductos', 'preciounitario', 'cantidad', 'total', 'fk_idproducto', 'fk_idpedido'
     ];
 
     protected $hidden = [ //si hay columnas que deban ir ocultas
@@ -20,7 +20,7 @@ class PedidoProducto extends Model
 
     public function cargarDesdeRequest($request) {
         $this->idpedidoproductos = $request->input('id') != "0" ? $request->input('id') : $this->idmenu;
-        $this->preciounitaio = $request->input('txtpreciounitaio');
+        $this->preciounitario = $request->input('txtpreciounitario');
         $this->cantidad = $request->input('txtcantidad');
         $this->fk_idproducto = $request->input('txtSucursal') != "" ? $request->input('txtsucursal') : 0;
         $this->fk_idpedido = $request->input('txtCliente');
@@ -31,12 +31,12 @@ class PedidoProducto extends Model
     {
         $sql = "SELECT
                   idpedidoproductos,
-                  preciounitaio,
+                  preciounitario,
                   cantidad,
                   total,
                   fk_idproducto,
                   fk_idpedido
-                FROM pedidos_productos ORDER BY preciounitaio";
+                FROM pedidos_productos ORDER BY preciounitario";
         $lstRetorno = DB::select($sql); //devuelve el array
         return $lstRetorno; //retorno el array
     }
@@ -46,7 +46,7 @@ class PedidoProducto extends Model
     {
         $sql = "SELECT
                 idpedidoproductos,
-                preciounitaio,
+                preciounitario,
                 cantidad,
                 total,
                 fk_idproducto,
@@ -56,7 +56,7 @@ class PedidoProducto extends Model
 
         if (count($lstRetorno) > 0) {
             $this->idpedidoproductos = $lstRetorno[0]->idpedidoproductos;
-            $this->preciounitaio = $lstRetorno[0]->preciounitaio;
+            $this->preciounitario = $lstRetorno[0]->preciounitario;
             $this->cantidad = $lstRetorno[0]->cantidad;
             $this->total = $lstRetorno[0]->total;
             $this->fk_idproducto = $lstRetorno[0]->fk_idproducto;
@@ -68,7 +68,7 @@ class PedidoProducto extends Model
 
     public function guardar() { //es el actualizar
         $sql = "UPDATE pedidos_productos SET
-            preciounitaio=?,
+            preciounitario=?,
             cantidad=?,
             total=?,
             fk_idproducto=?,
@@ -76,7 +76,7 @@ class PedidoProducto extends Model
             WHERE idpedidoproductos=?";
         $affected = DB::update($sql, [
             $this->idpedidoproductos,
-            $this->preciounitaio,
+            $this->preciounitario,
             $this->cantidad,
             $this->total,
             $this->fk_idproducto,
@@ -94,14 +94,14 @@ class PedidoProducto extends Model
     public function insertar()
     {
         $sql = "INSERT INTO pedidos_productos (
-                preciounitaio,
+                preciounitario,
                 cantidad,
                 total,
                 fk_idproducto,
                 fk_idpedido
             ) VALUES (?, ?, ?, ?, ?);";
         $result = DB::insert($sql, [
-            $this->preciounitaio,
+            $this->preciounitario,
             $this->cantidad,
             $this->total,
             $this->fk_idproducto,

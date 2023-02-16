@@ -4,6 +4,7 @@
       <h3 class="font-weight-bold text-center my-4 pt-3">Mi Cuenta</h3>
       <p class="text-center">Aquí podrás verificar tus datos personales. Editalos de ser necesario.</p>
 </div>
+
 <div class="container " style="align-items: center; width:60%;">
             <form action="" method="POST" class="px-3 py-3 justify-content-center shadow m-3"  >
             <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
@@ -47,8 +48,8 @@
                         <div class="col">
 
                               <div class="form-outline">
-                                    <input type="password" id="txtClave" name="txtClave" class="form-control" />
-                                    <label class="form-label" for="txtClave">Clave</label>
+                                    <input type="text" id="txtDni" name="txtDni" class="form-control" value="{{$cliente -> dni}}" />
+                                    <label class="form-label" for="txtDni" >Cedula</label>
                               </div>
                         </div>
 

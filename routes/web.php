@@ -18,10 +18,13 @@ Route::group(array('domain' => '127.0.0.1'), function () {
 
     Route::get('/', 'ControladorWebHome@index');
     Route::get('/takeaway', 'ControladorWebTakeaway@index');
+    Route::post('/takeaway', 'ControladorWebTakeaway@agregar');
     Route::get('/nosotros', 'ControladorWebNosotros@index');
     Route::post('/nosotros', 'ControladorWebNosotros@guardar');
     Route::get('/contacto', 'ControladorWebContacto@index');
+    Route::post('/contacto', 'ControladorWebContacto@enviarContacto');
     Route::get('/mi-cuenta', 'ControladorWebMicuenta@index');
+    Route::post('/mi-cuenta', 'ControladorWebMicuenta@actualizar');
     Route::get('/iniciar-sesion', 'ControladorWebIniciarSesion@index');
     Route::post('/iniciar-sesion', 'ControladorWebIniciarSesion@ingresar');
     Route::get('/cerrar-sesion', 'ControladorWebIniciarSesion@cerrarSesion');
@@ -29,6 +32,8 @@ Route::group(array('domain' => '127.0.0.1'), function () {
     Route::post('/registrarse', 'ControladorWebRegistrarse@guardar');
     Route::get('/recuperar-clave', 'ControladorWebRecuperarClave@index');
     Route::post('/recuperar-clave', 'ControladorWebRecuperarClave@recuperarClave');
+    Route::get('/carrito', 'ControladorWebCarrito@index');
+    Route::post('/carrito', 'ControladorWebCarrito@confirmarCompra');
     Route::get('/admin', 'ControladorHome@index');
     Route::post('/admin/patente/nuevo', 'ControladorPatente@guardar');
 

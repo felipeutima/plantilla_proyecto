@@ -9,29 +9,37 @@
 
       <hr>
 </div>
+@if(isset($mensaje))
+
+{{$mensaje}}
+
+@endif
 <div class="container " style="width:70%">
       <h3 class="text-center text-uppercase poppins-regular font-weight-bold pt-4">CONTACTO</h3>
-      <form action="POST" class="form border shadow m-4 p-4">
+      <p class="text-center">Dejanos tu mensaje, te escribimos en cuanto podamos.</p>
+      <form action="" method="POST" class="form border shadow m-4 p-4">
+      <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
+
             <div class="row">
 
                   <div class="mb-3 col-md-6">
-                        <label for="exampleFormControlInput1" class="form-label font-weight-bold">Nombre</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                        <label for="txtNombre" class="form-label font-weight-bold">Nombre</label>
+                        <input type="text" class="form-control" name="txtNombre" id="txtNombre" placeholder="name@example.com">
                   </div>
                   <div class="mb-3 col-md-6 ">
-                        <label for="exampleFormControlInput1" class="form-label font-weight-bold">Email de Contacto</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                        <label for="txtCorreo" class="form-label font-weight-bold">Email de Contacto</label>
+                        <input type="email" class="form-control" id="txtCorreo" name="txtCorreo" placeholder="name@example.com">
                   </div>
                   <div class="mb-3 col-md-12 ">
-                        <label for="exampleFormControlInput1" class="form-label font-weight-bold">Celular</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="+57123456789">
+                        <label for="txtCelular" class="form-label font-weight-bold">Celular</label>
+                        <input type="text" class="form-control" id="txtCelular"  name="txtCelular" placeholder="+57123456789">
                   </div>
                   <div class="mb-3 col-md-12">
-                        <label for="exampleFormControlTextarea1" class="form-label font-weight-bold">Mensaje</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <label for="txtMensaje" class="form-label font-weight-bold">Mensaje</label>
+                        <textarea class="form-control" id="txtMensaje" name="txtMensaje" rows="3"></textarea>
                   </div>
                   <div class="row justify-content-center">
-                        <button class="btn btn-primary mb-3" style="width:20%">Envíar Mensaje</button>
+                        <button class="btn btn-primary mb-3" type="submit" style="width:20%">Envíar Mensaje</button>
                   </div>
             </div>
       </form>

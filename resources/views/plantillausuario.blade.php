@@ -54,9 +54,9 @@
 					<li>
 						<a href="/cerrar-sesion" style="height: 80%" class="bg-warning text-dark"><i></i> &nbsp; Cerrar sesion</a>
 					</li>
-					<a href="bag.html" class="header-button full-box text-center" data-mdb-toggle="tooltip" data-mdb-placement="bottom" title="Carrito">
-						<i class="fas fa-shopping-bag"></i>
-						<span class="badge bg-warning rounded-pill bag-count">2</span>
+					<a href="/carrito" class="header-button full-box text-center" data-mdb-toggle="tooltip" data-mdb-placement="bottom" title="Carrito">
+						<i class="fa fa-shopping-cart"></i>
+						<span class="badge bg-warning rounded-pill bag-count">{{$cantidad_carrito-> cantidad}}</span>
 					</a>
 					@else
 					<li>

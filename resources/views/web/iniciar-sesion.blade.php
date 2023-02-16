@@ -30,7 +30,7 @@
                                           <button class="btn btn-info btn-lg btn-block" type="submit">Entrar</button>
                                     </div>
 
-                                    <p class="small mb-5 pb-lg-2"><a class="text-muted" href="#!">Olvidaste tu contraseña?</a></p>
+                                    <p class="small mb-5 pb-lg-2"><a class="text-muted" href="/recuperar-clave">Olvidaste tu contraseña?</a></p>
                                     <p>No tienes cuenta? <a href="/registrarse" class="link-info">Registrate aquí</a></p>
 
                               </form>

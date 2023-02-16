@@ -57,6 +57,35 @@ class CarritoProducto extends Model
         }
         return null;
     }
+    public function obtenerPorCliente($idcliente)
+    {
+        $sql = "SELECT
+                A.idcarrito_producto,
+                A.fk_idproducto,
+                A.fk_idcarrito,
+                A.cantidad,
+                B.nombre,
+                B.precio,
+                C.fk_idcliente
+                FROM carrito_productos A
+                INNER JOIN productos B ON A.fk_idproducto = B.idproducto
+                INNER JOIN carritos C ON A.fk_idcarrito = C.idcarrito
+                WHERE  C.fk_idcliente = $idcliente
+                ORDER BY idcarrito_producto ";
+        $lstRetorno = DB::select($sql);
+        return $lstRetorno;
+    }
+    public function obtenerCantidadPorCliente($idcliente)
+    {
+        $sql = "SELECT COUNT(*) AS 'cantidad'
+                FROM carrito_productos A
+                INNER JOIN carritos B ON A.fk_idcarrito =B.idcarrito
+                WHERE fk_idcliente=$idcliente";
+        $lstRetorno = DB::select($sql);
+            $this->cantidad = $lstRetorno[0]->cantidad;
+            return $this;
+    
+    }
 
     public function guardar() { //es el actualizar
         $sql = "UPDATE clientes SET
@@ -78,6 +107,14 @@ class CarritoProducto extends Model
             idcarrito_producto=?";
         $affected = DB::delete($sql, [$this->idcarrito_producto]);
     }
+    
+    public function eliminarPorCarrito($idCarrito)
+    {
+        $sql = "DELETE FROM carrito_productos WHERE
+            fk_idcarrito=?";
+        $affected = DB::delete($sql, [$idCarrito]);
+    }
+
 
     public function insertar()
     {
