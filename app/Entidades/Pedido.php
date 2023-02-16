@@ -124,6 +124,33 @@ class Pedido extends Model
             $this->idpedido
         ]);
     }
+    public function aprobado($idpedido) { //es el actualizar
+        $sql = "UPDATE pedidos SET
+            fk_idestado=?
+            WHERE idpedido=?";
+        $affected = DB::update($sql, [
+            5,
+            $idpedido
+          ]);
+    }
+    public function error($idpedido) { //es el actualizar
+        $sql = "UPDATE pedidos SET
+            fk_idestado=?
+            WHERE idpedido=?";
+        $affected = DB::update($sql, [
+            1,
+            $idpedido
+          ]);
+    }
+    public function pendiente($idpedido) { //es el actualizar
+        $sql = "UPDATE pedidos SET
+            fk_idestado=?
+            WHERE idpedido=?";
+        $affected = DB::update($sql, [
+            1,
+            $idpedido
+          ]);
+    }
 
     public function eliminar()
     {

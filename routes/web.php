@@ -35,6 +35,9 @@ Route::group(array('domain' => '127.0.0.1'), function () {
     Route::get('/carrito', 'ControladorWebCarrito@index');
     Route::post('/carrito', 'ControladorWebCarrito@confirmarCompra');
     Route::get('/confirmar-compra', 'ControladorWebConfirmarCompra@index');
+    Route::get('/mercado-pago/aprobado', 'ControladorWebMercadoPago@aprobado');
+    Route::get('/mercado-pago/pendiente', 'ControladorWebMercadoPago@pendiente');
+    Route::get('/mercado-pago/error', 'ControladorWebMercadoPago@error');
     Route::get('/admin', 'ControladorHome@index');
     Route::post('/admin/patente/nuevo', 'ControladorPatente@guardar');
 
