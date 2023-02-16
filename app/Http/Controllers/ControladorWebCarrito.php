@@ -37,6 +37,9 @@ class ControladorWebCarrito extends Controller
     public function confirmarCompra(Request $request){
 
         $idcliente =Session::get("idcliente");
+        //pago por
+        $medioPago= $request->input("lstPago");
+
 
         //alista el pedido
         $pedido=new Pedido();
@@ -72,8 +75,8 @@ class ControladorWebCarrito extends Controller
         
         $carrito->eliminarPorCliente($idcliente);
 
-
-        return redirect("/mi-cuenta");
+     
+        return redirect("/confirmar-compra");
 
     }
 

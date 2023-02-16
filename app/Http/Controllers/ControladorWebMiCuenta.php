@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Entidades\CarritoProducto;
 use App\Entidades\Cliente;
+use App\Entidades\Pedido;
 use App\Entidades\Sistema\Patente;
 use App\Entidades\Sistema\Usuario;
 use Illuminate\Http\Request;
@@ -17,14 +18,19 @@ class ControladorWebMiCuenta extends Controller
             $cliente=new Cliente();
             $cliente->obtenerPorId($idcliente);
 
-            $idcliente =Session::get("idcliente");
             $cantidad_carrito="";
             if($idcliente){
+                //traer cantidades para el carrito del navegador
                 $carritoProducto= new CarritoProducto();
                 $cantidad_carrito=$carritoProducto->obtenerCantidadPorCliente($idcliente);
+
             }
+            
+            //traer los pedidos del cliente
+            $pedido= new Pedido();
+            $aPedido=$pedido->obtenerPorCliente($idcliente);
     
-            return view("web.mi-cuenta", compact("idcliente", "cliente", "cantidad_carrito"));
+            return view("web.mi-cuenta", compact("idcliente", "cliente", "cantidad_carrito", "aPedido"));
     }
 
     public function actualizar(Request $request)

@@ -63,9 +63,9 @@
             </div>
             <hr>
             <div class="row mt-2">
-                  <label for="txtMetodoPago" class="font-weight-bold ">Metodo de pago:</label>
+                  <label for="lstPago" class="font-weight-bold ">Metodo de pago:</label>
                   <div>
-                  <select name="txtMetodoPago" id="txtMetodoPago" class="form-control">
+                  <select name="lstPago" id="lstPago" class="form-control">
                         <option value="" selected disabled>Seleccionar</option>
 
                         <option value="1">Pagar en tienda</option>

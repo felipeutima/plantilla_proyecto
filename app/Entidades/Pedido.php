@@ -46,14 +46,19 @@ class Pedido extends Model
     public function obtenerPorCliente($idcliente)
     {
         $sql = "SELECT
-                  idpedido,
-                  fecha,    
-                  descripcion,
-                  total,
-                  fk_idsucursal,
-                  fk_idcliente,
-                  fk_idestado
-                FROM pedidos WHERE fk_idcliente= $idcliente";
+                A.idpedido,
+                A.fecha,    
+                A.descripcion,
+                A.total,
+                A.fk_idsucursal,
+                A.fk_idcliente,
+                A.fk_idestado,
+                B.nombre AS sucursal,
+                C.nombre AS estado
+            FROM pedidos A 
+            INNER JOIN sucursales B ON A.fk_idsucursal= B.idsucursal
+            INNER JOIN estados C ON A.fk_idestado= C.id_estado
+            WHERE fk_idcliente= $idcliente";
         $lstRetorno = DB::select($sql); //devuelve el array
         return $lstRetorno; //retorno el array
     }

@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Entidades\CarritoProducto;
-use App\Entidades\Sistema\Patente;
-use App\Entidades\Sistema\Usuario;
+
 use Illuminate\Http\Request;
 use Session;
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\PHPMailer\Exception;
 
 class ControladorWebContacto extends Controller
 {
