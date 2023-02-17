@@ -114,7 +114,7 @@ class ControladorProducto extends Controller
 
 
                   $row = array();
-                  $row[] = '<a href="/admin/producto/' . $aProductos[$i]->idproducto . '">BOTON</a>';
+                  $row[] = '<a href="/admin/producto/' . $aProductos[$i]->idproducto . '">EDITAR</a>';
                   $row[] = $aProductos[$i]->nombre;
                   $row[] = $aProductos[$i]->cantidad;
                   $row[] = $aProductos[$i]->precio;

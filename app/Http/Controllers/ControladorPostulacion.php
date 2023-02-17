@@ -34,7 +34,7 @@ class ControladorPostulacion extends Controller{//para identificar como controla
                   
       
                 $row=array();
-                $row[]='<a href="/admin/postulacion/'. $aPostulaciones[$i]->idpostulacion . '">BOTON</a>';
+                $row[]='<a href="/admin/postulacion/'. $aPostulaciones[$i]->idpostulacion . '">EDITAR</a>';
                 $row[]=$aPostulaciones[$i] ->nombre;
                 $row[]=$aPostulaciones[$i] ->apellido;
                 $row[]=$aPostulaciones[$i] ->celular;

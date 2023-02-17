@@ -36,7 +36,7 @@ class ControladorSucursal extends Controller{//para identificar como controlador
                   
       
                 $row=array();
-                $row[]='<a href="/admin/sucursal/'. $aSucursal[$i]->idsucursal . '">BOTON</a>';
+                $row[]='<a href="/admin/sucursal/'. $aSucursal[$i]->idsucursal . '">EDITAR</a>';
                 $row[]=$aSucursal[$i] ->nombre;
                 $row[]=$aSucursal[$i] ->linkmap;
                 $cont++;

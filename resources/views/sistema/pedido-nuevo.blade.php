@@ -1,9 +1,10 @@
-@extends("plantilla");
+@extends("plantilla")
 @section("titulo",$titulo)
 @section('scripts')
 <script>
     globalId = '<?php echo isset($pedido->idpedido) && $pedido->idpedido > 0 ? $pedido->idpedido : 0; ?>';
     <?php $globalId = isset($pedido->idpedido) ? $pedido->idpedido : "0"; ?>
+    
 </script>
 @endsection
 @section('breadcrumb')
@@ -46,10 +47,20 @@ if (isset($msg)) {
         <div class="row">
             <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
             <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
+
+            @if($pedido->fecha=="")
+            <div class="form-group col-lg-6">
+            <label>Fecha: *</label>
+            <input type="date" id="txtFecha" name="txtFecha" class="form-control" value="" required>
+            </div>
+            @else
             <div class="form-group col-lg-6">
                 <label>Fecha: *</label>
-                <input type="date" id="txtFecha" name="txtFecha" class="form-control" value="{{$pedido->fecha}}" required>
+                <input type="hidden" id="txtFecha" name="txtFecha" class="form-control" value="{{$pedido->fecha}}" required>
+                <p>{{$pedido->fecha}}</p>
             </div>
+            @endif
+
             <div class="form-group col-lg-6">
                 <label>Descripción: *</label>
                 <input type="text" id="txtDescripcion" name="txtDescripcion" class="form-control" value="{{$pedido->descripcion}}" required>

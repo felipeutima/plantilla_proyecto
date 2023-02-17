@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Entidades\Carrito;
 use App\Entidades\CarritoProducto;
+use App\Entidades\Categoria;
 use App\Entidades\Producto;
+use App\Entidades\Sucursal;
 use Illuminate\Contracts\Session\Session as SessionSession;
 use Illuminate\Http\Request;
 use Session;
@@ -25,10 +27,11 @@ class ControladorWebTakeaway extends Controller
             $carritoProducto= new CarritoProducto();
             $cantidad_carrito=$carritoProducto->obtenerCantidadPorCliente($idcliente);
         }
+        $categoria= new Categoria();
+        $aCategoria=$categoria->obtenerTodos();
 
 
-
-        return view("web.takeaway", compact("aProductos","cantidad_carrito"));
+        return view("web.takeaway", compact("aProductos","cantidad_carrito", "aCategoria"));
     }
     public function agregar(Request $request)
     {

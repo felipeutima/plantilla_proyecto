@@ -39,7 +39,7 @@ class ControladorCategoria extends Controller{//para identificar como controlado
                   
       
                 $row=array();
-                $row[]='<a href="/admin/categoria/'. $aCategoria[$i]->idcategoria . '">BOTON</a>';
+                $row[]='<a href="/admin/categoria/'. $aCategoria[$i]->idcategoria . '">EDITAR</a>';
                 $row[]=$aCategoria[$i] ->nombre;
                 $cont++;
                 $data[]=$row; 

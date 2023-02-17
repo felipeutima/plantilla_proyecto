@@ -28,7 +28,8 @@ class ControladorPedidos extends Controller{//para identificar como controlador
             $aEstados=$estado->obtenerTodos();
 
             $pedido=new Pedido;
-           
+            
+                       
             return view("sistema.pedido-nuevo", compact("titulo", "aSucursal","aClientes", "aEstados",  "pedido"));
       }
       public function guardar(Request $request)
@@ -90,10 +91,10 @@ class ControladorPedidos extends Controller{//para identificar como controlador
                   
       
                 $row=array();
-                $row[]='<a href="/admin/pedido/'. $aPedidos[$i]->idpedido . '">BOTON</a>';
+                $row[]='<a href="/admin/pedido/'. $aPedidos[$i]->idpedido . '">EDITAR</a>';
                 $row[]=$aPedidos[$i] ->fecha;
                 $row[]=$aPedidos[$i] ->descripcion;
-                $row[]=$aPedidos[$i] ->total;
+                $row[]="$".number_format($aPedidos[$i] ->total, 0, ',', '.')." COP";
                 $row[]=$aPedidos[$i] ->sucursal;
                 $row[]=$aPedidos[$i] ->cliente;
                 $row[]=$aPedidos[$i] ->estado;

@@ -43,7 +43,7 @@ class ControladorCliente extends Controller
 
 
                   $row = array();
-                  $row[] = '<a href="/admin/cliente/' . $aClientes[$i]->idcliente . '">BOTON</a>';
+                  $row[] = '<a href="/admin/cliente/' . $aClientes[$i]->idcliente . '">EDITAR</a>';
                   $row[] = $aClientes[$i]->nombre;
                   $row[] = $aClientes[$i]->apellido;
                   $row[] = $aClientes[$i]->celular;
